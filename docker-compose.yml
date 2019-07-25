@@ -1,0 +1,32 @@
+version: "3"
+
+services:
+  reverse-proxy:
+    # The official v2.0 Traefik docker image
+    image: traefik:alpine
+    # Enables the web UI and tells Traefik to listen to docker
+    command: --api --docker
+    ports:
+      - "80:80" # The HTTP port
+      - "8080:8080" # The Web UI (enabled by --api)
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock # So that Traefik can listen to the Docker events
+  web1:
+    build: ./web
+    environment:
+      - name=blog1
+    labels:
+      - traefik.frontend.rule=PathPrefixStrip:/blog1
+      - traefik.port=5000
+      - traefik.http.auth.basic.users=test:pass@123,test2:pass@123
+    ports:
+      - 5001:5000
+  web2:
+    build: ./web
+    environment:
+      - name=blog2
+    labels:
+      - traefik.frontend.rule=PathPrefixStrip:/blog2
+      - traefik.port=5000
+    ports:
+      - 5002:5000
