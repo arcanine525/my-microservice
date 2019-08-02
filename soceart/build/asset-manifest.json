@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/static/css/main.8d9bbe34.chunk.css",
+    "main.js": "/static/js/main.8353cb3f.chunk.js",
+    "main.js.map": "/static/js/main.8353cb3f.chunk.js.map",
+    "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
+    "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
+    "static/js/2.753de65b.chunk.js": "/static/js/2.753de65b.chunk.js",
+    "static/js/2.753de65b.chunk.js.map": "/static/js/2.753de65b.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.05ffeacf91ca6b18fa20f7facf5a167b.js": "/precache-manifest.05ffeacf91ca6b18fa20f7facf5a167b.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.8d9bbe34.chunk.css.map": "/static/css/main.8d9bbe34.chunk.css.map",
+    "static/media/CardItem.png": "/static/media/CardItem.03c86e1a.png",
+    "static/media/GoToStore.css": "/static/media/StarsStripes.998494c5.ttf",
+    "static/media/Footer.css": "/static/media/footer.c8187758.jpg",
+    "static/media/Header.css": "/static/media/header-background.aefa29fb.jpg",
+    "static/media/LoginPage.css": "/static/media/login-background.a63a9fb1.png",
+    "static/media/match-attax-logo.png": "/static/media/match-attax-logo.dea493b9.png",
+    "static/media/panini-logo.png": "/static/media/panini-logo.e8878047.png",
+    "static/media/soceart-logo.svg": "/static/media/soceart-logo.3f180444.svg"
+  }
+}

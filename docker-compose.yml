@@ -9,8 +9,26 @@ services:
     ports:
       - "80:80" # The HTTP port
       - "8080:8080" # The Web UI (enabled by --api)
+      - "443:443"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock # So that Traefik can listen to the Docker events
+      - ./acme.json:/acme.json
+    command:
+      - --debug=false
+      - --logLevel=ERROR
+      - --defaultentrypoints=https,http
+      - --entryPoints=Name:http Address::80 Redirect.EntryPoint:https
+      - --entryPoints=Name:https Address::443 TLS
+      - --retry
+      - --docker.endpoint=unix:///var/run/docker.sock
+      - --docker.domain=bubblebees.tk
+      - --docker.watch=true
+      - --docker.exposedbydefault=false
+      - --acme.email=arcanine1450222@gmail.com
+      - --acme.storage=acme.json
+      - --acme.entryPoint=https
+      - --acme.onHostRule=true
+      - --acme.httpchallenge.entrypoint=http
   web1:
     build: ./web
     environment:
@@ -18,9 +36,9 @@ services:
     labels:
       - traefik.frontend.rule=PathPrefixStrip:/blog1
       - traefik.port=5000
-      - traefik.http.auth.basic.users=test:pass@123,test2:pass@123
     ports:
       - 5001:5000
+
   web2:
     build: ./web
     environment:
@@ -30,3 +48,14 @@ services:
       - traefik.port=5000
     ports:
       - 5002:5000
+      
+  soceart:
+    build: ./soceart
+    container_name: soceart
+    labels:
+      - traefik.frontend.rule=PathPrefixStrip:/soceart
+      - traefik.basic.frontend.rule=Host:bubblebees.tk
+      - traefik.port=80
+    ports:
+      - 5003:80
+    restart: always
